@@ -1,5 +1,6 @@
 @import "~normalize.css/normalize.css";
 @import "./element-variables.scss";
+@import "./element-ui.scss";
 
 #app {
   width: 100vw;
@@ -9,26 +10,4 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
-}
-
-// 表格筛选区样式
-.filter {
-  margin-bottom: 20px;
-
-  .filter-item {
-    width: 200px;
-
-    &:not(:last-child) {
-      margin-right: 20px;
-    }
-  }
-}
-
-// 表格头部样式
-.el-table tr.ink-table-header-row {
-  background-color: $--color-primary;
-}
-.el-table th.ink-table-header-cell {
-  color: $--color-white;
-  background-color: transparent;
 }
