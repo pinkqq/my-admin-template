@@ -1,7 +1,11 @@
 import Vue from "vue";
+import "./plugins";
+import "./styles/index.scss";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+
+import "@/icons"; // icon
 
 Vue.config.productionTip = false;
 
