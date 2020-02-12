@@ -80,6 +80,10 @@ export default {
       this.$refs.loginForm.validate(value => {
         if (value) {
           this.loading = true;
+          setTimeout(() => {
+            this.$router.replace(this.$route.query.redirect || "/");
+            this.loading = false;
+          }, 300);
         }
       });
     }
