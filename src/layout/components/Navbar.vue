@@ -1,5 +1,6 @@
 <template>
   <div class="navbar">
+    <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
       <el-dropdown>
         <span class="avatar-wrapper">
@@ -20,8 +21,10 @@
   </div>
 </template>
 <script>
+import Breadcrumb from "@/components/Breadcrumb";
 export default {
   name: "Navbar",
+  components: { Breadcrumb },
   methods: {
     logout() {
       // todo logout
@@ -38,6 +41,11 @@ export default {
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 }
+
+.breadcrumb-container {
+  float: left;
+}
+
 .right-menu {
   float: right;
   height: 100%;

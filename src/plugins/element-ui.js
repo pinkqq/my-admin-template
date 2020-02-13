@@ -13,6 +13,8 @@ import {
   FormItem,
   Input,
   Button,
+  Breadcrumb,
+  BreadcrumbItem,
   //   Select,
   //   Option,
   //   Switch,
@@ -37,6 +39,8 @@ Vue.use(Form);
 Vue.use(FormItem);
 Vue.use(Input);
 Vue.use(Button);
+Vue.use(Breadcrumb);
+Vue.use(BreadcrumbItem);
 // Vue.use(Select);
 // Vue.use(Option);
 // Vue.use(Switch);

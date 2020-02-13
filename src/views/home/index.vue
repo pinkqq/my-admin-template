@@ -1,9 +1,9 @@
 <template>
-  <div>dashboard</div>
+  <div>home</div>
 </template>
 <script>
 export default {
-  name: "dashboard"
+  name: "home"
 };
 </script>
 <style lang="scss" scoped></style>
