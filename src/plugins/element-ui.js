@@ -18,12 +18,16 @@ import {
   //   Select,
   //   Option,
   //   Switch,
-  //   Menu,
-  //   MenuItem,
+  Menu,
+  MenuItem,
+  Submenu,
   //   Table,
   //   TableColumn,
   //   Link,
   //   DatePicker,
+  Radio,
+  RadioGroup,
+  RadioButton,
   Image,
   Loading,
   //   Message
@@ -44,12 +48,16 @@ Vue.use(BreadcrumbItem);
 // Vue.use(Select);
 // Vue.use(Option);
 // Vue.use(Switch);
-// Vue.use(Menu);
-// Vue.use(MenuItem);
+Vue.use(Menu);
+Vue.use(MenuItem);
+Vue.use(Submenu);
 // Vue.use(Table);
 // Vue.use(TableColumn);
 // Vue.use(Link);
 // Vue.use(DatePicker);
+Vue.use(Radio);
+Vue.use(RadioGroup);
+Vue.use(RadioButton);
 Vue.use(Image);
 Vue.use(Dropdown);
 Vue.use(DropdownMenu);

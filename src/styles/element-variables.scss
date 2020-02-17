@@ -4,4 +4,18 @@ $--color-primary: #444;
 /* 改变 icon 字体路径变量，必需 */
 $--font-path: "~element-ui/lib/theme-chalk/fonts";
 
+// sidebar
+$menuText: #909399;
+$menuActiveText: #444; //https://github.com/ElemeFE/element/issues/12951
+$menuBg: #fff;
+
+$sideBarWidth: 210px;
+
 @import "~element-ui/packages/theme-chalk/src/index";
+
+:export {
+  menuText: $menuText;
+  menuActiveText: $menuActiveText;
+  menuBg: $menuBg;
+  sideBarWidth: $sideBarWidth;
+}

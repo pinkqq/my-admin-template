@@ -1,5 +1,9 @@
 <template>
   <div class="navbar">
+    <!-- <el-radio-group v-model="isCollapse">
+      <el-radio-button :label="false">展开</el-radio-button>
+      <el-radio-button :label="true">收起</el-radio-button>
+    </el-radio-group> -->
     <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
       <el-dropdown>
@@ -25,6 +29,9 @@ import Breadcrumb from "@/components/Breadcrumb";
 export default {
   name: "Navbar",
   components: { Breadcrumb },
+  //   data() {
+  //     return { isCollapse: true };
+  //   },
   methods: {
     logout() {
       // todo logout

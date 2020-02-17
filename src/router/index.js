@@ -5,7 +5,11 @@ import Layout from "@/layout/index";
 Vue.use(VueRouter);
 
 /**  
- * redirect: noRedirect           if set noRedirect will no redirect in the breadcrumb
+ * hidden: true                   if set true, item will not show in the sidebar(default is false)
+ * redirect: noRedirect           if set noRedirect will no redirect in the breadcrumb 
+ * alwaysShow: true               if set true, will always show the root menu
+ *                                if not set alwaysShow, when item has more than one children route,
+ *                                it will becomes nested mode, otherwise not show the root menu
  * meta : {
     roles: ['admin','editor']    control the page roles (you can set multiple roles)
     title: 'title'               the name show in sidebar and breadcrumb (recommend set)
@@ -20,7 +24,8 @@ const routes = [
     path: "/login",
     name: "Login",
     component: () =>
-      import(/* webpackChunkName: "login" */ "@/views/login/index")
+      import(/* webpackChunkName: "login" */ "@/views/login/index"),
+    hidden: true
   },
   {
     path: "/",
