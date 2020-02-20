@@ -1,13 +1,18 @@
 <template>
   <div>
-    <!-- <el-radio-group v-model="isCollapse">
-      <el-radio-button :label="false">展开</el-radio-button>
-      <el-radio-button :label="true">收起</el-radio-button>
-    </el-radio-group> -->
+    <div class="sidebar-logo-container">
+      <router-link to="/" class="sidebar-logo">
+        <img
+          alt="logo-aside"
+          :src="
+            require('@/assets/' + (isCollapse ? 'logo-thumb.png' : 'logo.png'))
+          "
+        />
+      </router-link>
+    </div>
     <el-menu
       :default-active="activeMenu"
       :collapse="isCollapse"
-      :background-color="variables.menuBg"
       :text-color="variables.menuText"
       :active-text-color="variables.menuActiveText"
       :unique-opened="false"
@@ -29,10 +34,10 @@ import variables from "@/styles/element-variables.scss";
 import sidebarItem from "./sidebarItem";
 export default {
   name: "Sidebar",
+  props: { isCollapse: { type: Boolean, default: false } },
   components: { sidebarItem },
   data() {
     return {
-      isCollapse: false,
       variables: variables
     };
   },
@@ -51,3 +56,21 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+.sidebar-logo-container {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 60px;
+
+  .sidebar-logo {
+    // width: 150px;
+    height: 26px;
+    padding-left: 17px;
+
+    img {
+      height: 100%;
+    }
+  }
+}
+</style>

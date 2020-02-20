@@ -12,12 +12,14 @@
         :index="resolvePath(onlyOneChild.path)"
         class="submenu-title-noDropdown"
       >
+        <i :if="onlyOneChild.meta.icon" :class="onlyOneChild.meta.icon"></i>
         <span slot="title">{{ onlyOneChild.meta.title }}</span>
       </el-menu-item>
     </template>
     <el-submenu v-else :index="resolvePath(item.path)">
-      <template slot="title">
-        <span v-if="item.meta">{{ item.meta.title }}</span>
+      <template v-if="item.meta" slot="title">
+        <i :if="item.meta.icon" :class="item.meta.icon"></i>
+        <span slot="title">{{ item.meta.title }}</span>
       </template>
       <sidebar-item
         v-for="child in item.children"

@@ -1,9 +1,10 @@
 <template>
   <div class="navbar">
-    <!-- <el-radio-group v-model="isCollapse">
-      <el-radio-button :label="false">展开</el-radio-button>
-      <el-radio-button :label="true">收起</el-radio-button>
-    </el-radio-group> -->
+    <i
+      class="hamburger"
+      :class="isHideSidebar ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
+      @click="toggleSidebar"
+    ></i>
     <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
       <el-dropdown>
@@ -28,6 +29,12 @@
 import Breadcrumb from "@/components/Breadcrumb";
 export default {
   name: "Navbar",
+  props: {
+    isHideSidebar: {
+      type: Boolean,
+      default: false
+    }
+  },
   components: { Breadcrumb },
   //   data() {
   //     return { isCollapse: true };
@@ -36,13 +43,18 @@ export default {
     logout() {
       // todo logout
       this.$router.push("/login");
+    },
+    toggleSidebar() {
+      this.$emit("toggleSidebar");
     }
   }
 };
 </script>
 <style lang="scss" scoped>
+@import "@/styles/element-variables.scss";
+
 .navbar {
-  height: 50px;
+  height: $navbarHeight;
   overflow: hidden;
   position: relative;
   background: #fff;
@@ -53,10 +65,25 @@ export default {
   float: left;
 }
 
+.hamburger {
+  float: left;
+  padding: 0 20px;
+  height: 100%;
+  font-size: 16px;
+  line-height: $navbarHeight;
+  cursor: pointer;
+  transition: background 0.3s;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.025);
+  }
+}
+
 .right-menu {
   float: right;
   height: 100%;
-  line-height: 50px;
+  line-height: $navbarHeight;
   padding: 0 20px;
   cursor: pointer;
 }

@@ -36,19 +36,47 @@ const routes = [
         path: "home",
         name: "home",
         component: () => import("@/views/home/index"),
-        meta: { title: "首页" }
-      },
+        meta: { title: "首页", icon: "el-icon-location" }
+      }
+    ]
+  },
+  {
+    path: "/page",
+    component: Layout,
+    redirect: "/page/01",
+    meta: { title: "页面", icon: "el-icon-menu" },
+    children: [
       {
-        path: "page01",
+        path: "01",
         name: "page01",
         component: () => import("@/views/page01/index"),
         meta: { title: "页面一" }
       },
       {
-        path: "page02",
+        path: "02",
         name: "page02",
         component: () => import("@/views/page02/index"),
         meta: { title: "页面二" }
+      }
+    ]
+  },
+  {
+    path: "/example",
+    component: Layout,
+    redirect: "/example/01",
+    meta: { title: "实例", icon: "el-icon-setting" },
+    children: [
+      {
+        path: "01",
+        name: "eg01",
+        component: () => import("@/views/page01/index"),
+        meta: { title: "实例一" }
+      },
+      {
+        path: "02",
+        name: "eg02",
+        component: () => import("@/views/page02/index"),
+        meta: { title: "实例二" }
       }
     ]
   }

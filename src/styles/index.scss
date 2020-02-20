@@ -1,6 +1,4 @@
 @import "~normalize.css/normalize.css";
-@import "./element-variables.scss";
-@import "./element-ui.scss";
 
 #app {
   width: 100vw;
@@ -54,3 +52,6 @@ div:focus {
     height: 0;
   }
 }
+
+@import "./element-variables.scss";
+@import "./element-ui.scss";
