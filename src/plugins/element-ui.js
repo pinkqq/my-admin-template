@@ -30,7 +30,8 @@ import {
   RadioButton,
   Image,
   Loading,
-  //   Message
+  Message,
+  MessageBox,
   Dropdown,
   DropdownMenu,
   DropdownItem
@@ -66,4 +67,8 @@ Vue.use(DropdownItem);
 Vue.use(Loading.directive);
 
 Vue.prototype.$loading = Loading.service;
-// Vue.prototype.$message = Message;
+Vue.prototype.$message = Message;
+Vue.prototype.$msgbox = MessageBox;
+Vue.prototype.$alert = MessageBox.alert;
+Vue.prototype.$confirm = MessageBox.confirm;
+Vue.prototype.$prompt = MessageBox.prompt;
