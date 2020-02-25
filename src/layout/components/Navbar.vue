@@ -42,7 +42,9 @@ export default {
   methods: {
     logout() {
       // todo logout
-      this.$router.push("/login");
+      this.$store.dispatch("user/logout").then(() => {
+        this.$router.push("/login");
+      });
     },
     toggleSidebar() {
       this.$emit("toggleSidebar");

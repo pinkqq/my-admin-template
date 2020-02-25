@@ -3,7 +3,7 @@ import { Message } from "element-ui";
 import store from "@/store";
 
 const service = axios.create({
-  baseUrl: process.env.VUE_APP_BASE_API,
+  baseURL: process.env.VUE_APP_BASE_API,
   timeout: 60000
 });
 
@@ -37,7 +37,6 @@ service.interceptors.response.use(
         store.dispatch("user/logout");
         location.reload();
       }
-
       return Promise.reject(new Error(res.error.message));
     } else {
       return res;
