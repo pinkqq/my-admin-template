@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import { getToken } from "@/utils/auth";
 import Layout from "@/layout/index";
 
 Vue.use(VueRouter);
@@ -86,6 +87,25 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes
+});
+
+const whiteList = ["/login"];
+
+router.beforeEach(async (to, from, next) => {
+  const token = getToken();
+  if (token) {
+    if (to.path === "/login") {
+      next("/");
+    } else {
+      next();
+    }
+  } else {
+    if (whiteList.includes(to.path)) {
+      next();
+    } else {
+      next("/login?redirect=" + to.fullPath);
+    }
+  }
 });
 
 export default router;
