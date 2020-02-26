@@ -7,6 +7,8 @@ import store from "./store";
 
 import "@/icons"; // icon
 
+import "../mock"; //remove it before going online !
+
 Vue.config.productionTip = false;
 
 new Vue({

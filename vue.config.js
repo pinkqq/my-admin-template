@@ -6,6 +6,14 @@ function resolve(dir) {
 }
 
 module.exports = {
+  devServer: {
+    open: true,
+    overlay: {
+      warnings: false,
+      errors: true
+    }
+    // before: require("./mock")
+  },
   chainWebpack(config) {
     // set svg-sprite-loader
     config.module
