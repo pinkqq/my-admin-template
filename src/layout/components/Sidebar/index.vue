@@ -20,7 +20,7 @@
       :router="true"
     >
       <sidebar-item
-        v-for="route in routes"
+        v-for="route in permission_routes"
         :key="route.path"
         :item="route"
         :base-path="route.path"
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import variables from "@/styles/element-variables.scss";
 import sidebarItem from "./sidebarItem";
 export default {
@@ -50,9 +51,11 @@ export default {
       }
       return path;
     },
-    routes() {
-      return this.$router.options.routes;
-    }
+    ...mapGetters(["permission_routes"])
+    // routes() {
+    //   debugger;
+    //   return this.$router.options.routes;
+    // }
   }
 };
 </script>

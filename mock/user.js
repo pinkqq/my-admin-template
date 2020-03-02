@@ -1,3 +1,5 @@
+import { param2Obj } from "@/utils";
+
 const tokens = {
   admin: { token: "admin-token" },
   editor: { token: "editor-token" }
@@ -32,7 +34,6 @@ export default [
     response: config => {
       const { username } = JSON.parse(config.body);
       const token = tokens[username];
-      const userInfo = users[token];
       if (!token) {
         return {
           code: 400,
@@ -41,12 +42,28 @@ export default [
       } else {
         return {
           code: 0,
-          data: {
-            ...userInfo,
-            token: token
-          }
+          data: token
         };
       }
+    }
+  },
+  {
+    url: "/info.*",
+    type: "get",
+    response: config => {
+      const query = param2Obj(config.url);
+      const { token } = query;
+      const info = users[token];
+      if (!info) {
+        return {
+          code: 400,
+          error: { subCode: 1001, message: "相关用户不存在" }
+        };
+      }
+      return {
+        code: 0,
+        data: info
+      };
     }
   }
 ];

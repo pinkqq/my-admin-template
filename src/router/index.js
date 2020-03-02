@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import { getToken } from "@/utils/auth";
 import Layout from "@/layout/index";
+import store from "@/store";
 
 Vue.use(VueRouter);
 
@@ -20,7 +21,7 @@ Vue.use(VueRouter);
   }
  */
 
-const routes = [
+export const constantRoutes = [
   {
     path: "/login",
     name: "Login",
@@ -60,34 +61,34 @@ const routes = [
         meta: { title: "页面二" }
       }
     ]
-  },
+  }
+];
+
+export const asyncRoutes = [
   {
-    path: "/example",
+    path: "/permission",
     component: Layout,
-    redirect: "/example/01",
-    meta: { title: "实例", icon: "el-icon-setting" },
     children: [
       {
-        path: "01",
-        name: "eg01",
-        component: () => import("@/views/page01/index"),
-        meta: { title: "实例一" }
-      },
-      {
-        path: "02",
-        name: "eg02",
-        component: () => import("@/views/page02/index"),
-        meta: { title: "实例二" }
+        path: "",
+        name: "permission",
+        component: () => import("@/views/permission/index"),
+        meta: { title: "admin only", roles: ["admin"], icon: "el-icon-setting" }
       }
     ]
   }
 ];
 
-const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes
-});
+const createRouter = () =>
+  new VueRouter({
+    mode: "history",
+    base: process.env.BASE_URL,
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes
+  });
+const router = createRouter();
+
+// permission control
 
 const whiteList = ["/login"];
 
@@ -96,8 +97,26 @@ router.beforeEach(async (to, from, next) => {
   if (token) {
     if (to.path === "/login") {
       next("/");
-    } else {
+    } else if (store.getters.roles && store.getters.roles.length > 0) {
       next();
+    } else {
+      try {
+        store.dispatch("user/getInfo").then(res => {
+          const roles = res.roles;
+          // 生成可访问的路由表
+          store.dispatch("permission/generateRoutes", roles).then(routes => {
+            debugger;
+            router.addRoutes(routes);
+            next({ ...to, replace: true });
+          });
+        });
+      } catch (error) {
+        // remove token and go to login page to re-login
+        debugger;
+        // await store.dispatch("user/resetToken");
+        // Message.error(error || "Has Error");
+        // next(`/login?redirect=${to.path}`);
+      }
     }
   } else {
     if (whiteList.includes(to.path)) {
@@ -107,5 +126,11 @@ router.beforeEach(async (to, from, next) => {
     }
   }
 });
+
+export function resetRouter() {
+  const newRouter = createRouter();
+  // 替换现有router的routes
+  router.matcher = newRouter.matcher;
+}
 
 export default router;
