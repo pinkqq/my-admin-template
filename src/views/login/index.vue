@@ -83,7 +83,11 @@ export default {
           this.$store
             .dispatch("user/login", this.loginForm)
             .then(() => {
-              this.$router.replace(this.$route.query.redirect || "/");
+              this.$router
+                .replace(this.$route.query.redirect || "/")
+                .catch(err => {
+                  console.log(err);
+                });
               this.loading = false;
             })
             .finally(() => {

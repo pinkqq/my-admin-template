@@ -105,7 +105,6 @@ router.beforeEach(async (to, from, next) => {
           const roles = res.roles;
           // 生成可访问的路由表
           store.dispatch("permission/generateRoutes", roles).then(routes => {
-            debugger;
             router.addRoutes(routes);
             next({ ...to, replace: true });
           });
