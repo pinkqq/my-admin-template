@@ -12,7 +12,7 @@
   </el-breadcrumb>
 </template>
 <script>
-import { pathToRegexp } from "path-to-regexp";
+import { compile } from "path-to-regexp";
 
 export default {
   name: "Breadcrumb",
@@ -52,16 +52,20 @@ export default {
     },
     pathCompile(path) {
       //to solve:Breadcrumb not support params?
-      const { params } = this.$route;
-      return pathToRegexp.compile(path)(params);
+      const { params } = this.$router;
+      return compile(path)(params);
     },
     handleLink(route) {
       const { redirect, path } = route;
       if (redirect) {
-        this.$router.push(redirect);
+        this.$router.push(redirect).catch(err => {
+          err;
+        });
         return;
       }
-      this.router.push(this.pathCompile(path));
+      this.$router.push(this.pathCompile(path)).catch(err => {
+        err;
+      });
     }
   }
 };
