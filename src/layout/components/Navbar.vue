@@ -36,9 +36,6 @@ export default {
     }
   },
   components: { Breadcrumb },
-  //   data() {
-  //     return { isCollapse: true };
-  //   },
   methods: {
     logout() {
       // todo logout
