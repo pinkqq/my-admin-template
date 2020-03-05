@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import { getToken } from "@/utils/auth";
+import { Message } from "element-ui";
 import Layout from "@/layout/index";
 import store from "@/store";
 
@@ -27,6 +28,11 @@ export const constantRoutes = [
     name: "Login",
     component: () =>
       import(/* webpackChunkName: "login" */ "@/views/login/index"),
+    hidden: true
+  },
+  {
+    path: "/404",
+    component: () => import("@/views/404"),
     hidden: true
   },
   {
@@ -76,7 +82,8 @@ export const asyncRoutes = [
         meta: { title: "admin only", roles: ["admin"], icon: "el-icon-setting" }
       }
     ]
-  }
+  },
+  { path: "*", redirect: "/404", hidden: true }
 ];
 
 const createRouter = () =>
@@ -111,10 +118,9 @@ router.beforeEach(async (to, from, next) => {
         });
       } catch (error) {
         // remove token and go to login page to re-login
-        debugger;
-        // await store.dispatch("user/resetToken");
-        // Message.error(error || "Has Error");
-        // next(`/login?redirect=${to.path}`);
+        await store.dispatch("user/resetToken");
+        Message.Error(error || "Has Error");
+        next(`/login?redirect=${to.path}`);
       }
     }
   } else {

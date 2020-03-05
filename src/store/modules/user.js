@@ -41,6 +41,13 @@ const actions = {
     resetRouter();
     commit("RESET_STATE");
     return Promise.resolve();
+  },
+  resetToken({ commit }) {
+    return new Promise(resolve => {
+      removeToken();
+      commit("REMOVE_TOKEN", "");
+      resolve();
+    });
   }
 };
 
