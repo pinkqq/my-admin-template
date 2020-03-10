@@ -73,13 +73,27 @@ export const constantRoutes = [
 export const asyncRoutes = [
   {
     path: "/permission",
+    redirect: "/permission/all",
     component: Layout,
+    meta: { title: "权限管理", icon: "el-icon-setting" },
     children: [
       {
-        path: "",
-        name: "permission",
-        component: () => import("@/views/permission/index"),
-        meta: { title: "admin only", roles: ["admin"], icon: "el-icon-setting" }
+        path: "all",
+        name: "all",
+        component: () => import("@/views/permission/all"),
+        meta: { title: "都可以进" }
+      },
+      {
+        path: "admin",
+        name: "admin",
+        component: () => import("@/views/permission/admin"),
+        meta: { title: "admin only", roles: ["admin"] }
+      },
+      {
+        path: "editor",
+        name: "editor",
+        component: () => import("@/views/permission/editor"),
+        meta: { title: "editor page", roles: ["editor"] }
       }
     ]
   },

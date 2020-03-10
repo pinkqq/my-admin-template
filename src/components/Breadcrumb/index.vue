@@ -58,14 +58,10 @@ export default {
     handleLink(route) {
       const { redirect, path } = route;
       if (redirect) {
-        this.$router.push(redirect).catch(err => {
-          err;
-        });
+        this.$router.push(redirect);
         return;
       }
-      this.$router.push(this.pathCompile(path)).catch(err => {
-        err;
-      });
+      this.$router.push(this.pathCompile(path));
     }
   }
 };

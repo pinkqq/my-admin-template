@@ -1,8 +1,8 @@
 <template>
-  <div>Visible to admin only</div>
+  <div>all</div>
 </template>
 <script>
 export default {
-  name: "Permission"
+  name: "All"
 };
 </script>
