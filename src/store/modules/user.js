@@ -9,7 +9,7 @@ const getDefaultState = () => {
 const state = getDefaultState();
 
 const mutations = {
-  RESET_STATE: state => {
+  RESET_STATE: (state) => {
     Object.assign(state, getDefaultState());
   },
   SET_ROLES: (state, roles) => {
@@ -18,20 +18,20 @@ const mutations = {
   SET_TOKEN: (state, token) => {
     state.token = token;
   },
-  REMOVE_TOKEN: state => {
+  REMOVE_TOKEN: (state) => {
     state.token = "";
-  }
+  },
 };
 const actions = {
   login({ commit }, loginInfo) {
-    return login(loginInfo).then(data => {
+    return login(loginInfo).then((data) => {
       setToken(data.token);
       commit("SET_TOKEN", data.token);
       return data;
     });
   },
   getInfo({ commit, state }) {
-    return getInfo(state.token).then(userInfo => {
+    return getInfo(state.token).then((userInfo) => {
       commit("SET_ROLES", userInfo.roles);
       return userInfo;
     });
@@ -43,17 +43,17 @@ const actions = {
     return Promise.resolve();
   },
   resetToken({ commit }) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       removeToken();
       commit("REMOVE_TOKEN", "");
       resolve();
     });
-  }
+  },
 };
 
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
 };

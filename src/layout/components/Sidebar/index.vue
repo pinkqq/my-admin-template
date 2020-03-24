@@ -35,11 +35,11 @@ import variables from "@/styles/element-variables.scss";
 import sidebarItem from "./sidebarItem";
 export default {
   name: "Sidebar",
-  props: { isCollapse: { type: Boolean, default: false } },
   components: { sidebarItem },
+  props: { isCollapse: { type: Boolean, default: false } },
   data() {
     return {
-      variables: variables
+      variables: variables,
     };
   },
   computed: {
@@ -51,12 +51,12 @@ export default {
       }
       return path;
     },
-    ...mapGetters(["permission_routes"])
+    ...mapGetters(["permission_routes"]),
     // routes() {
     //   debugger;
     //   return this.$router.options.routes;
     // }
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>

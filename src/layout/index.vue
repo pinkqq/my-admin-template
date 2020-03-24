@@ -1,11 +1,14 @@
 <template>
   <div class="app-wrapper" :class="{ hideSidebar: isHideSidebar }">
-    <sidebar class="sidebar-container" :isCollapse="isHideSidebar" />
+    <Sidebar class="sidebar-container" :is-collapse="isHideSidebar" />
     <div class="main-container">
       <div class="fixed-header">
-        <navbar @toggleSidebar="toggleSidebar" :isHideSidebar="isHideSidebar" />
+        <Navbar
+          :is-hide-sidebar="isHideSidebar"
+          @toggleSidebar="toggleSidebar"
+        />
       </div>
-      <app-main />
+      <AppMain />
     </div>
   </div>
 </template>
@@ -16,14 +19,14 @@ export default {
   components: { Navbar, Sidebar, AppMain },
   data() {
     return {
-      isHideSidebar: false
+      isHideSidebar: false,
     };
   },
   methods: {
     toggleSidebar() {
       this.isHideSidebar = !this.isHideSidebar;
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

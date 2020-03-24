@@ -1,13 +1,14 @@
 <template>
   <div class="app-main">
     <transition name="fade-transform" mode="out-in">
-      <router-view></router-view>
+      <router-view />
+      <!-- <router-view name="page"></router-view> -->
     </transition>
   </div>
 </template>
 <script>
 export default {
-  name: "AppMain"
+  name: "AppMain",
 };
 </script>
 <style lang="scss" scoped>

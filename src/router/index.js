@@ -25,15 +25,15 @@ Vue.use(VueRouter);
 export const constantRoutes = [
   {
     path: "/login",
-    name: "Login",
+    name: "login",
     component: () =>
       import(/* webpackChunkName: "login" */ "@/views/login/index"),
-    hidden: true
+    hidden: true,
   },
   {
     path: "/404",
     component: () => import("@/views/404"),
-    hidden: true
+    hidden: true,
   },
   {
     path: "/",
@@ -44,9 +44,9 @@ export const constantRoutes = [
         path: "home",
         name: "home",
         component: () => import("@/views/home/index"),
-        meta: { title: "首页", icon: "el-icon-location" }
-      }
-    ]
+        meta: { title: "首页", icon: "el-icon-location" },
+      },
+    ],
   },
   {
     path: "/page",
@@ -58,16 +58,16 @@ export const constantRoutes = [
         path: "01",
         name: "page01",
         component: () => import("@/views/page01/index"),
-        meta: { title: "页面一" }
+        meta: { title: "页面一" },
       },
       {
         path: "02",
         name: "page02",
         component: () => import("@/views/page02/index"),
-        meta: { title: "页面二" }
-      }
-    ]
-  }
+        meta: { title: "页面二" },
+      },
+    ],
+  },
 ];
 
 export const asyncRoutes = [
@@ -81,23 +81,23 @@ export const asyncRoutes = [
         path: "all",
         name: "all",
         component: () => import("@/views/permission/all"),
-        meta: { title: "都可以进" }
+        meta: { title: "都可以进" },
       },
       {
         path: "admin",
         name: "admin",
         component: () => import("@/views/permission/admin"),
-        meta: { title: "admin only", roles: ["admin"] }
+        meta: { title: "admin only", roles: ["admin"] },
       },
       {
         path: "editor",
         name: "editor",
         component: () => import("@/views/permission/editor"),
-        meta: { title: "editor page", roles: ["editor"] }
-      }
-    ]
+        meta: { title: "editor page", roles: ["editor"] },
+      },
+    ],
   },
-  { path: "*", redirect: "/404", hidden: true }
+  { path: "*", redirect: "/404", hidden: true },
 ];
 
 const createRouter = () =>
@@ -105,7 +105,7 @@ const createRouter = () =>
     mode: "history",
     base: process.env.BASE_URL,
     scrollBehavior: () => ({ y: 0 }),
-    routes: constantRoutes
+    routes: constantRoutes,
   });
 const router = createRouter();
 
@@ -122,10 +122,10 @@ router.beforeEach(async (to, from, next) => {
       next();
     } else {
       try {
-        store.dispatch("user/getInfo").then(res => {
+        store.dispatch("user/getInfo").then((res) => {
           const roles = res.roles;
           // 生成可访问的路由表
-          store.dispatch("permission/generateRoutes", roles).then(routes => {
+          store.dispatch("permission/generateRoutes", roles).then((routes) => {
             router.addRoutes(routes);
             next({ ...to, replace: true });
           });

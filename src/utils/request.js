@@ -4,18 +4,18 @@ import store from "@/store";
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
-  timeout: 60000
+  timeout: 60000,
 });
 
 // request interceptor
 service.interceptors.request.use(
-  config => {
+  (config) => {
     if (store.getters.token) {
       config.headers.Authorization = "Bearer " + store.getters.token;
     }
     return config;
   },
-  error => {
+  (error) => {
     console.log(error); //for debug
     return Promise.reject(error);
   }
@@ -23,14 +23,14 @@ service.interceptors.request.use(
 
 // response interceptor
 service.interceptors.response.use(
-  response => {
+  (response) => {
     const res = response.data;
     if (res.code === 0) {
       return res.data;
     } else if (typeof res.code === "number") {
       Message({
         message: res.error.message,
-        type: "error"
+        type: "error",
       });
 
       if (res.code === 401) {
@@ -42,12 +42,12 @@ service.interceptors.response.use(
       return res;
     }
   },
-  error => {
+  (error) => {
     console.log("err" + error); // for debug
     Message({
       message: error.message,
       type: "error",
-      duration: 5 * 1000
+      duration: 5 * 1000,
     });
     return Promise.reject(error);
   }

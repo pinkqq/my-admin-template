@@ -18,13 +18,13 @@ export default {
   name: "Breadcrumb",
   data() {
     return {
-      levelList: null
+      levelList: null,
     };
   },
   watch: {
     $route() {
       this.getBreadcrumb();
-    }
+    },
   },
   created() {
     this.getBreadcrumb();
@@ -33,14 +33,14 @@ export default {
     getBreadcrumb() {
       // only show routes with meta.title
       let matched = this.$route.matched.filter(
-        item => item.meta && item.meta.title
+        (item) => item.meta && item.meta.title
       );
       const first = matched[0];
       if (!this.isHome(first)) {
         matched = [{ path: "/home", meta: { title: "首页" } }].concat(matched);
       }
       this.levelList = matched.filter(
-        item => item.meta && item.meta.title && item.meta.breadcrumb !== false
+        (item) => item.meta && item.meta.title && item.meta.breadcrumb !== false
       );
     },
     isHome(route) {
@@ -62,8 +62,8 @@ export default {
         return;
       }
       this.$router.push(this.pathCompile(path));
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

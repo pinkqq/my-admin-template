@@ -1,13 +1,13 @@
 <template>
   <div class="login-container">
-    <div class="login" v-loading="loading">
+    <div v-loading="loading" class="login">
       <el-image
         class="logo"
         alt="logo-login"
         fit="contain"
         :src="require('@/assets/logo-login.png')"
       />
-      <el-form :model="loginForm" :rules="rules" ref="loginForm">
+      <el-form ref="loginForm" :model="loginForm" :rules="rules">
         <el-form-item prop="username">
           <el-input
             v-model="loginForm.username"
@@ -15,17 +15,17 @@
             maxlength="32"
             placeholder="用户名"
             @keyup.enter.native="login"
-          ></el-input>
+          />
         </el-form-item>
         <el-form-item prop="password">
           <el-input
+            ref="password"
             v-model="loginForm.password"
             :type="passwordType"
             maxlength="32"
             placeholder="密码"
             @keyup.enter.native="login"
-            ref="password"
-          ></el-input>
+          />
           <span class="show-pwd" @click="showPwd">
             <svg-icon
               :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"
@@ -56,13 +56,13 @@ export default {
       loginForm: { username: "", password: "" },
       rules: {
         username: [
-          { required: true, message: "请输入用户名", trigger: "blur" }
+          { required: true, message: "请输入用户名", trigger: "blur" },
         ],
         password: [
           { required: true, message: "请输入密码", trigger: "blur" },
-          { min: 6, message: "密码至少为6位", trigger: "blur" }
-        ]
-      }
+          { min: 6, message: "密码至少为6位", trigger: "blur" },
+        ],
+      },
     };
   },
   methods: {
@@ -77,7 +77,7 @@ export default {
       });
     },
     login() {
-      this.$refs.loginForm.validate(value => {
+      this.$refs.loginForm.validate((value) => {
         if (value) {
           this.loading = true;
           this.$store
@@ -85,7 +85,7 @@ export default {
             .then(() => {
               this.$router
                 .replace(this.$route.query.redirect || "/")
-                .catch(err => {
+                .catch((err) => {
                   console.log(err);
                 });
               this.loading = false;
@@ -95,8 +95,8 @@ export default {
             });
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

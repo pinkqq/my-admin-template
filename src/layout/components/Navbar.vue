@@ -4,8 +4,8 @@
       class="hamburger"
       :class="isHideSidebar ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
       @click="toggleSidebar"
-    ></i>
-    <breadcrumb class="breadcrumb-container" />
+    />
+    <Breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
       <el-dropdown>
         <span class="avatar-wrapper">
@@ -29,13 +29,13 @@
 import Breadcrumb from "@/components/Breadcrumb";
 export default {
   name: "Navbar",
+  components: { Breadcrumb },
   props: {
     isHideSidebar: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
-  components: { Breadcrumb },
   methods: {
     logout() {
       // todo logout
@@ -45,8 +45,8 @@ export default {
     },
     toggleSidebar() {
       this.$emit("toggleSidebar");
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

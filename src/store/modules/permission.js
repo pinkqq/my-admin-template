@@ -7,7 +7,7 @@ import { asyncRoutes, constantRoutes } from "@/router/";
  */
 function hasPermission(route, roles) {
   if (route.meta && route.meta.roles) {
-    return route.meta.roles.some(item => roles.includes(item));
+    return route.meta.roles.some((item) => roles.includes(item));
   } else {
     return true;
   }
@@ -21,7 +21,7 @@ function hasPermission(route, roles) {
 
 export function filterAsyncRoutes(routes, roles) {
   let res = [];
-  routes.forEach(route => {
+  routes.forEach((route) => {
     let temp = { ...route };
     if (hasPermission(temp, roles)) {
       if (temp.children) {
@@ -35,19 +35,19 @@ export function filterAsyncRoutes(routes, roles) {
 
 const state = {
   routes: [],
-  addRoutes: []
+  addRoutes: [],
 };
 
 const mutations = {
   SET_ROUTES: (state, addRoutes) => {
     state.addRoutes = addRoutes;
     state.routes = constantRoutes.concat(addRoutes);
-  }
+  },
 };
 
 const actions = {
   generateRoutes({ commit }, roles) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       let accessedRoutes;
       // admin：最高权限
       if (roles.includes("admin")) {
@@ -58,12 +58,12 @@ const actions = {
       commit("SET_ROUTES", accessedRoutes);
       resolve(accessedRoutes);
     });
-  }
+  },
 };
 
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
 };

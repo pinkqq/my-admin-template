@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-  name: "page02"
+  name: "Page02",
 };
 </script>
 <style lang="scss" scoped></style>

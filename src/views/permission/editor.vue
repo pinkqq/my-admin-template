@@ -3,6 +3,6 @@
 </template>
 <script>
 export default {
-  name: "PermissionEditor"
+  name: "PermissionEditor",
 };
 </script>

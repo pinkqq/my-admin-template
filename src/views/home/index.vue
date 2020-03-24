@@ -1,13 +1,19 @@
 <template>
   <div>
-    <el-button type="warning" v-permission="['admin']">admin only</el-button>
-    <el-button type="success" v-permission="['editor']">editor only</el-button>
-    <el-button type="primary">no-permission</el-button>
+    <el-button v-permission="['admin']" type="warning">
+      admin only
+    </el-button>
+    <el-button v-permission="['editor']" type="success">
+      editor only
+    </el-button>
+    <el-button type="primary">
+      no-permission
+    </el-button>
   </div>
 </template>
 <script>
 export default {
-  name: "home"
+  name: "Home",
 };
 </script>
 <style lang="scss" scoped>

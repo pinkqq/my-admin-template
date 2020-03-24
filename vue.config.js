@@ -10,16 +10,13 @@ module.exports = {
     open: true,
     overlay: {
       warnings: false,
-      errors: true
-    }
+      errors: true,
+    },
     // before: require("./mock")
   },
   chainWebpack(config) {
     // set svg-sprite-loader
-    config.module
-      .rule("svg")
-      .exclude.add(resolve("src/icons"))
-      .end();
+    config.module.rule("svg").exclude.add(resolve("src/icons")).end();
     config.module
       .rule("icons")
       .test(/\.svg$/)
@@ -28,8 +25,8 @@ module.exports = {
       .use("svg-sprite-loader")
       .loader("svg-sprite-loader")
       .options({
-        symbolId: "icon-[name]"
+        symbolId: "icon-[name]",
       })
       .end();
-  }
+  },
 };

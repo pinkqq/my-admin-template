@@ -3,8 +3,8 @@
     <template
       v-if="
         hasOneShowingChild(item.children, item) &&
-          (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
-          !item.alwaysShow
+        (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
+        !item.alwaysShow
       "
     >
       <el-menu-item
@@ -12,13 +12,13 @@
         :index="resolvePath(onlyOneChild.path)"
         class="submenu-title-noDropdown"
       >
-        <i :if="onlyOneChild.meta.icon" :class="onlyOneChild.meta.icon"></i>
+        <i :if="onlyOneChild.meta.icon" :class="onlyOneChild.meta.icon" />
         <span slot="title">{{ onlyOneChild.meta.title }}</span>
       </el-menu-item>
     </template>
     <el-submenu v-else :index="resolvePath(item.path)">
       <template v-if="item.meta" slot="title">
-        <i :if="item.meta.icon" :class="item.meta.icon"></i>
+        <i :if="item.meta.icon" :class="item.meta.icon" />
         <span slot="title">{{ item.meta.title }}</span>
       </template>
       <sidebar-item
@@ -26,7 +26,7 @@
         :key="child.path"
         :item="child"
         :base-path="resolvePath(child.path)"
-      ></sidebar-item>
+      />
     </el-submenu>
   </div>
 </template>
@@ -39,19 +39,19 @@ export default {
   props: {
     item: {
       type: Object,
-      required: true
+      required: true,
     },
     basePath: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
   },
   data() {
     return { onlyOneChild: null };
   },
   methods: {
     hasOneShowingChild(children = [], parent) {
-      const showingChidren = children.filter(item => {
+      const showingChidren = children.filter((item) => {
         if (item.hidden) {
           return false;
         } else {
@@ -77,7 +77,7 @@ export default {
       }
       //绝对路径拼接
       return path.resolve(this.basePath, routePath);
-    }
-  }
+    },
+  },
 };
 </script>
